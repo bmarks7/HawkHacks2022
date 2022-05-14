@@ -1,0 +1,73 @@
+.fillout, .titleLabel, .descriptionLabel, .audioLabel, .tweetLabel{
+    font-size: 30px;
+}
+
+.fillout, .titleLabel, .descriptionLabel, .fillout, .titleInput, .descriptionInput, .tweetSection, .audioLabel, .audioInput{
+    display: block;
+    margin: auto;
+}
+
+.titleInput, .descriptionInput{
+    border: none;
+    border-radius: 10px;
+    padding: 7px;
+    font-size: 15px;
+}
+
+.titleInput:focus, .descriptionInput:focus{
+    outline: none;
+}
+
+.descriptionInput{
+    resize: none;
+    width: 500px;
+    height: 200px;
+}
+
+.titleInput{
+    width: 500px;
+}
+
+.titleLabel, .descriptionLabel, .tweetLabel, .audioLabel{
+    margin: 30px 0px 15px 0px;
+}
+
+.tweetSection{
+    margin: 30px 0px 15px 0px;
+}
+
+.audioInput{
+    position: relative;
+    background-color: white;
+    padding: 30px 30px 30px 40px;
+    border-radius: 10px;
+    /* width: 500px; */
+}
+
+.fillout{
+    margin-top: 20px;
+}
+
+.tweetBox{
+    position: relative;
+    bottom: 4px;
+    left: 10px;
+    transform: scale(2);
+    border: none;
+}
+
+
+.submitButton{
+    margin: 30px 0px;
+    font-size: 30px;
+    border: none;
+    background-color: #DB9DE5;
+    border-radius: 20px;
+    transition: all .5s;
+    padding: 10px 20px;
+}
+
+.submitButton:hover{
+    background-color: #f1d6f5;
+    cursor: pointer;
+}
