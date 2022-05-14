@@ -1,0 +1,10 @@
+.footer{
+    background-color: #131E2D;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-text{
+    color: white;
+}

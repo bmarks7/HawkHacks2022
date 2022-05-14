@@ -1,0 +1,16 @@
+.HomeButtonLink{
+    text-decoration: none;
+}
+
+.HomeButtonName{
+    margin: 10px 10px;
+    color: white;
+    background-color: #131E2D;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.HomeButtonName:hover{
+    background-color: #35537e;
+}
