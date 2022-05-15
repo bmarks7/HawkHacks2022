@@ -1,20 +1,21 @@
-.fillout, .titleLabel, .descriptionLabel, .audioLabel, .tweetLabel{
+.fillout, .titleLabel, .descriptionLabel, .audioLabel, .tweetLabel, .locationLabel, .speakerLabel{
     font-size: 30px;
 }
 
-.fillout, .titleLabel, .descriptionLabel, .fillout, .titleInput, .descriptionInput, .tweetSection, .audioLabel, .audioInput{
+.fillout, .titleLabel, .descriptionLabel, .fillout, .titleInput, .descriptionInput, .tweetSection, .audioLabel, .audioInput, .locationLabel, .locationInput, .speakerLabel, .speakerInput{
     display: block;
     margin: auto;
 }
 
-.titleInput, .descriptionInput{
+.titleInput, .descriptionInput, .locationInput, .speakerInput{
     border: none;
     border-radius: 10px;
     padding: 7px;
     font-size: 15px;
+    width: 500px;
 }
 
-.titleInput:focus, .descriptionInput:focus{
+.titleInput:focus, .descriptionInput:focus, .locationInput:focus, .speakerInput:focus{
     outline: none;
 }
 
@@ -24,11 +25,7 @@
     height: 200px;
 }
 
-.titleInput{
-    width: 500px;
-}
-
-.titleLabel, .descriptionLabel, .tweetLabel, .audioLabel{
+.titleLabel, .descriptionLabel, .tweetLabel, .audioLabel, .locationLabel, .speakerLabel{
     margin: 30px 0px 15px 0px;
 }
 
@@ -41,7 +38,6 @@
     background-color: white;
     padding: 30px 30px 30px 40px;
     border-radius: 10px;
-    /* width: 500px; */
 }
 
 .fillout{
