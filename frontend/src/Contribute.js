@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Snackbar} from "@mui/material"
 import './Contribute.css'
 
 export default function Contribute() {
@@ -8,9 +9,13 @@ export default function Contribute() {
     const [description, setDescription] = useState('')
     const [tweet, setTweet] = useState(false)
     const [file, setFile] = useState(null)
+    const [haveResponse, setHaveResponse] = useState(true)
+    const [snackbarOpen, setSnackbarOpen] = useState(false)
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        e.target.reset()
+        console.log('button pressed')
         const formData = new FormData()
         formData.append('title', title)
         formData.append('speaker', location)
@@ -19,11 +24,20 @@ export default function Contribute() {
         formData.append('tweet', tweet)
         formData.append('file', file)
 
+        setTitle('')
+        setSpeaker('')
+        setLocation('')
+        setDescription('')
+
+        setHaveResponse(false)
+
         fetch('http://localhost:5000/', {
             method: 'POST',
             body: formData
-        }).then(() => {
+        }).then((response) => {
             console.log('new speech added')
+            setSnackbarOpen(true)
+            setHaveResponse(true)
         })
     }
 
@@ -53,8 +67,17 @@ export default function Contribute() {
                 setFile(e.target.files[0])
                 }}/>
 
-            <input className='submitButton' type="submit" value='Submit'/>
+            <input 
+            className='submitButton' 
+            type="submit" 
+            value={haveResponse ? 'Submit' : 'Processing...'} 
+            disabled={!haveResponse}/>
         </form>
+
+        <Snackbar message='Entry submitted successfully!' 
+        autoHideDuration={5000}
+        open={snackbarOpen}
+        />
     </div>
   )
 }

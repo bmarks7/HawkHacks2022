@@ -57,7 +57,7 @@ export default function Discover() {
 
                     <p className='resultSubheader'>Excerpt</p>
                     <div className="result_excerpt">
-                        <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1]))}</p>
+                        <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1], '.'))}</p>
                     </div>
                 </div>
             ))}

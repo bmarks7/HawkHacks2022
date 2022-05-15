@@ -4,14 +4,36 @@
 
 .HomeButtonName{
     margin: 10px 10px;
-    color: white;
-    background-color: #131E2D;
-    padding: 10px;
-    border-radius: 10px;
+    background-color: #DB9DE5;
+    padding: 15px;
+    border-radius: 20px;
     transition: all .3s;
     cursor: pointer;
+    font-size: 25px;
 }
 
 .HomeButtonName:hover{
-    background-color: #35537e;
+    background-color: #f1d6f5;
+}
+
+.section2{
+    background-color:#131E2D;
+}
+
+.discoverText{
+    color: white;
+}
+
+.welcomeText, .discoverText, .contributeText{
+    font-size: 25px;
+    padding: 30px;
+}
+
+.section1, .section2, .section3{
+    display: flex;
+}
+
+.img1, .img2, .img3{
+    padding: 30px;
+    width: 600px;
 }
