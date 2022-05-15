@@ -73,4 +73,9 @@
 .result_excerpt_text{
 }
 
+.linkToResult{
+    text-decoration: none;
+    color: black;
+}
+
 

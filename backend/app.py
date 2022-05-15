@@ -29,6 +29,7 @@ class File(db.Model):
     text = db.Column(db.String)
     entities = db.relationship('Entity', backref='file')
     highlights = db.relationship('Highlight', backref='file')
+    chapters = db.relationship('Chapter', backref='file')
 
 class Entity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,6 +39,13 @@ class Entity(db.Model):
 class Highlight(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String)
+    file_id = db.Column(db.Integer, db.ForeignKey('file.id'))
+
+class Chapter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    summary = db.Column(db.String)
+    headline = db.Column(db.String)
+    gist = db.Column(db.String)
     file_id = db.Column(db.Integer, db.ForeignKey('file.id'))
 
 db.create_all()
@@ -83,7 +91,13 @@ def storeFile():
             if json['tweet'] == 'True':
                 tweetVal = True
 
-            new_file = File(title=json['title'], speaker=json['speaker'], location=json['location'], description=json['description'], tweet=tweetVal, text=response['text'])
+            new_file = File(
+                title=json['title'], 
+                speaker=json['speaker'], 
+                location=json['location'], 
+                description=json['description'], 
+                tweet=tweetVal, 
+                text=response['text'])
             db.session.add(new_file)
             db.session.commit()
 
@@ -96,6 +110,11 @@ def storeFile():
             for entity in entities:
                 new_entity = Entity(text = entity['text'], file=new_file)
                 db.session.add(new_entity)
+
+            chapters = response['chapters']
+            for chapter in chapters:
+                new_chapter = Chapter(summary = chapter['summary'], headline = chapter['headline'], gist = chapter['gist'], file=new_file)
+                db.session.add(new_chapter)
 
             db.session.commit()
             break
@@ -119,6 +138,10 @@ def search(searchVal, location):
         for highlight in match.highlights:
             match_highlights.append({"text": highlight.text, "file_id": highlight.file_id})
 
+        match_chapters = []
+        for chapter in match.chapters:
+            match_chapters.append({"summary": chapter.summary, "headline": chapter.headline, "gist": chapter.gist, "file_id": chapter.file_id})
+
         match_obj = {
          "id": match.id,
          "title": match.title,
@@ -127,6 +150,7 @@ def search(searchVal, location):
          "description": match.description, 
          "tweet": match.tweet,
          "text": match.text,
+         "chapters": match_chapters,
          "entities": match_entities,
          "highlights": match_highlights}
         results.append(match_obj)
@@ -146,6 +170,10 @@ def search(searchVal, location):
             for highlight in matching_file.highlights:
                 match_highlights.append({"text": highlight.text, "file_id": highlight.file_id})
 
+            match_chapters = []
+            for chapter in matching_file.chapters:
+                match_chapters.append({"summary": chapter.summary, "headline": chapter.headline, "gist": chapter.gist, "file_id": chapter.file_id})
+
             match_obj = {
             "id": matching_file.id,
             "title": matching_file.title,
@@ -154,6 +182,7 @@ def search(searchVal, location):
             "description": matching_file.description, 
             "tweet": matching_file.tweet,
             "text": matching_file.text,
+            "chapters": match_chapters,
             "entities": match_entities,
             "highlights": match_highlights}
 
@@ -165,9 +194,38 @@ def search(searchVal, location):
             if alreadySelected == False:
                 results.append(match_obj)
 
-    print(results)
 
     return jsonify({'results': results})
+
+@app.route("/getOne/<id>", methods=['GET'])
+def getOne(id):
+    file = File.query.filter(File.id == id).first()
+
+    match_entities = []
+    for entity in file.entities:
+            match_entities.append({"text": entity.text, "file_id": entity.file_id})
+
+    match_highlights = []
+    for highlight in file.highlights:
+        match_highlights.append({"text": highlight.text, "file_id": highlight.file_id})
+
+    match_chapters = []
+    for chapter in file.chapters:
+        match_chapters.append({"summary": chapter.summary, "headline": chapter.headline, "gist": chapter.gist, "file_id": chapter.file_id})
+
+    file_obj = {
+    "id": file.id,
+    "title": file.title,
+    "speaker": file.speaker, 
+    "location": file.location, 
+    "description": file.description, 
+    "tweet": file.tweet,
+    "text": file.text,
+    "chapters": match_chapters,
+    "entities": match_entities,
+    "highlights": match_highlights}
+
+    return jsonify({'file': file_obj})
 
 if __name__ == "__main__":
     app.run()

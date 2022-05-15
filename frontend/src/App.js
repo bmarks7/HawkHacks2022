@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Home from './Home'
@@ -13,12 +13,12 @@ function App() {
       <div className="App">
         <Navbar />
         <div className='content'>
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/discover" component={Discover}/>
-            <Route exact path="/contribute" component={Contribute}/>
-            <Route exact path='/result/:id' component={Result}/>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/discover" element={<Discover/>}/>
+            <Route path="/contribute" element={<Contribute/>}/>
+            <Route path='/result/:id' element={<Result/>}/>
+          </Routes>
         </div>
         <Footer />
       </div>

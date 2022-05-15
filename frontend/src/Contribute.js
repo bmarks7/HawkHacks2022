@@ -51,16 +51,16 @@ export default function Contribute() {
             <label className='speakerLabel' htmlFor="">Speaker</label>
             <input className='speakerInput' type="text" value={speaker} onChange={(e) => setSpeaker(e.target.value)}/>
 
-            <label className='descriptionLabel' htmlFor="">Description &#40;What's in the audio&#41;</label>
-            <textarea className='descriptionInput' value={description} onChange={(e) => setDescription(e.target.value)}/>
-
             <label className='locationLabel' htmlFor="">Location</label>
             <input className='locationInput' type="text" value={location} onChange={(e) => setLocation(e.target.value)}/>
 
-            <div className='tweetSection'>
+            <label className='descriptionLabel' htmlFor="">Description &#40;What's in the audio&#41;</label>
+            <textarea className='descriptionInput' value={description} onChange={(e) => setDescription(e.target.value)}/>
+
+            {/* <div className='tweetSection'>
                 <label className='tweetLabel' htmlFor="">Automatically Tweet Out Important Sentences</label>
                 <input className='tweetBox' type="checkbox" onChange={(e) => setTweet(e.target.checked)} tweet/>
-            </div>
+            </div> */}
 
             <label className='audioLabel' htmlFor="">Upload Audio File</label>
             <input className='audioInput' type="file" onChange = {(e) => {
@@ -77,7 +77,8 @@ export default function Contribute() {
         <Snackbar message='Entry submitted successfully!' 
         autoHideDuration={5000}
         open={snackbarOpen}
-        />
+        onClose={() => {setSnackbarOpen(false)}}
+         />
     </div>
   )
 }

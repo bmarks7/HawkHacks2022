@@ -36,24 +36,23 @@ export default function Discover() {
         <p className='resultsHeader'>Results</p>
         <div className="resultsList">
             {results.map((result, index) => (
-                <div className='result'>
-                    <p className='resultSubheader'>Keywords</p>
-                    <div className="result_highlights">
-                        {(result.highlights).map((highlight, index) => (
-                            <div key={index}>
-                                <p className="result_highlight">{highlight.text}</p>
-                            </div>
-                        ))}
+                <a key={index} className='linkToResult' href={`result/${result.id}`}>
+                    <div className='result'>
+                        <p className='resultSubheader'>Keywords</p>
+                        <div className="result_highlights">
+                            {(result.highlights).map((highlight, index) => (
+                                <div key={index}>
+                                    <p className="result_highlight">{highlight.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                
+                        <p className='resultSubheader'>Excerpt</p>
+                        <div className="result_excerpt">
+                            <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1]))}</p>
+                        </div>
                     </div>
-            
-                    <p className='resultSubheader'>Excerpt</p>
-                    <div className="result_excerpt">
-                        <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1]))}</p>
-                    </div>
-
-                    <a href={`result/${result.id}`}>More</a>
-                </div>
-            
+                </a>
             ))}
         </div>
 
