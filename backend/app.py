@@ -155,14 +155,16 @@ def search(searchVal, location):
          "highlights": match_highlights}
         results.append(match_obj)
 
+    
     entity_matches = Entity.query.filter(Entity.text.contains(searchVal)).all()
     for match in entity_matches:
         if location == 'nowhere':
-            matching_file = File.query.filter(File.id == match.file_id).first()
+            matching_file = File.query.filter(File.id == match.file_id).first().all()
         else:
-            matching_file = File.query.filter(File.id == match.file_id, File.location.contains(location)).first()
+            matching_file = File.query.filter(File.id == match.file_id, File.location.contains(location)).all()
 
         if matching_file != []:
+            matching_file = matching_file[0]
             for entity in matching_file.entities:
                 match_entities.append({"text": entity.text, "file_id": entity.file_id})
 

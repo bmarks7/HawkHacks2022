@@ -28,23 +28,35 @@ export default function Result() {
 
   return (
     <div className='resultcomponent'>
-        <p className='subheader1'>Title: </p>
-        <p className='text1'>{title}</p>
-        <p className='subheader2'>Speaker: </p>
-        <p className='text2'>{speaker}</p>
-        <p className='subheader3'>Location: </p>
-        <p className='text3'>{location}</p>
-        <p className='subheader4'>Description: </p>
-        <p className='text4'>{description}</p>
-        <p className='subheader5'>Text: </p>
-        <p className='text5'>{text}</p>
-        <p className='subheader5'>Highlighted Terms: </p>
+        <div className="resultSection">
+        <span className='subheader1'>Title: </span>
+        <span className='text1'>{title}</span>
+        </div>
+        <div className="resultSection">
+        <span className='subheader2'>Speaker: </span>
+        <span className='text2'>{speaker}</span>
+        </div>
+        <div className="resultSection">
+        <span className='subheader3'>Location: </span>
+        <span className='text3'>{location}</span>
+        </div>
+        <div className="resultSection">
+        <span className='subheader4'>Description: </span>
+        <span className='text4'>{description}</span>
+        </div>
+        <div className="resultSection">
+        <span className='subheader5'>Text: </span>
+        <span className='text5'>{text}</span>
+        </div>
+        <div className="resultSection">
+        <p className='subheader6'>Important Words/Phrases: </p>
         <div className="highlightedTerms">
         {(highlights).map ((highlight, index) => (
             <div className='highlightDiv'>
-                <p className='text6'>{highlight.text}</p>
+                <span className='text6'>{highlight.text}</span>
             </div>
         ))}
+        </div>
         </div>
     </div>
   )
