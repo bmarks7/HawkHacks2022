@@ -6,6 +6,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import pprint
+import tweepy
+from requests_oauthlib import OAuth1Session
+import os
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -116,6 +120,7 @@ def search(searchVal, location):
             match_highlights.append({"text": highlight.text, "file_id": highlight.file_id})
 
         match_obj = {
+         "id": match.id,
          "title": match.title,
          "speaker": match.speaker, 
          "location": match.location, 
@@ -142,6 +147,7 @@ def search(searchVal, location):
                 match_highlights.append({"text": highlight.text, "file_id": highlight.file_id})
 
             match_obj = {
+            "id": matching_file.id,
             "title": matching_file.title,
             "speaker": matching_file.speaker, 
             "location": matching_file.location, 
@@ -151,7 +157,12 @@ def search(searchVal, location):
             "entities": match_entities,
             "highlights": match_highlights}
 
-            if not match_obj in results:
+            alreadySelected = False
+            for result in results:
+                if result['id'] == match_obj['id']:
+                    alreadySelected = True
+
+            if alreadySelected == False:
                 results.append(match_obj)
 
     print(results)
