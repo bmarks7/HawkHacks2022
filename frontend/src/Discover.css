@@ -40,13 +40,13 @@
     opacity: .7;
 }
 
-.result_highlights, .result_entities{
+.result_highlights{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.result_highlight, .result_entity{
+.result_highlight{
     background-color: #B2E8DA;
     margin: 0px 5px 5px 0px;
     padding: 5px;
@@ -59,6 +59,11 @@
     border-radius: 15px;
     width: 700px;
     margin-bottom: 50px;
+    transition: all .5s;
+}
+
+.result:hover{
+    background-color: #f2f2f2;
 }
 
 .resultSubheader{
@@ -67,4 +72,5 @@
 
 .result_excerpt_text{
 }
+
 

@@ -36,7 +36,7 @@ export default function Discover() {
         <p className='resultsHeader'>Results</p>
         <div className="resultsList">
             {results.map((result, index) => (
-                <div key={index} className='result'>
+                <div className='result'>
                     <p className='resultSubheader'>Keywords</p>
                     <div className="result_highlights">
                         {(result.highlights).map((highlight, index) => (
@@ -45,21 +45,15 @@ export default function Discover() {
                             </div>
                         ))}
                     </div>
-
-                    <p className='resultSubheader'>Entities</p>
-                    <div className="result_entities">
-                        {(result.entities).map((entity, index) => (
-                            <div key={index}>
-                                <p className="result_entity">{entity.text}</p>
-                            </div>
-                        ))}
-                    </div>
-
+            
                     <p className='resultSubheader'>Excerpt</p>
                     <div className="result_excerpt">
-                        <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1], '.'))}</p>
+                        <p className="result_excerpt_text">{result.text.split('.').length < 2 ? (result.text) : (result.text.split('.')[0].concat('. ', result.text.split('.')[1]))}</p>
                     </div>
+
+                    <a href={`result/${result.id}`}>More</a>
                 </div>
+            
             ))}
         </div>
 
