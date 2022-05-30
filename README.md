@@ -1,4 +1,4 @@
-# HawkHacks2022
+# SpeechFinder
 
 Built during the hackathon HawkHacks in May 2022.
 
